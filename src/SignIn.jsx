@@ -1,10 +1,8 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useContext, useState } from 'react';
 import { FirebaseContext } from './FirbaseContext';
-import { auth } from './firebase';
-// import './SignUp.css';
 
-function SignUp() {
+function SignIn() {
     const { app, auth } = useContext(FirebaseContext);
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -13,7 +11,7 @@ function SignUp() {
         e.preventDefault();
 
         try {
-            await createUserWithEmailAndPassword(auth, email, pass);
+            await signInWithEmailAndPassword(auth, email, pass);
             setEmail('');
             setPass('');
         } catch (e) {
@@ -39,9 +37,9 @@ function SignUp() {
                 type="password"
                 required
             />
-            <button>Sign up!</button>
+            <button>Sign In!</button>
         </form>
     );
 }
 
-export default SignUp;
+export default SignIn;
